@@ -8,6 +8,13 @@ export class Suit{
   }
 }
 
+const suitNames = [
+  'clubs',
+  'diamonds',
+  'hearts',
+  'spades'
+]
+
 export class PlayingCard {
   suit: Suit
   faceValue: number
@@ -22,29 +29,11 @@ export class Cards {
     const result: string[] = []
     const newDeck: PlayingCard[] = []
 
-    for (let suit = 0; suit < 4; suit++) {
+    suitNames.forEach(suitName => {
       for (let faceValue = 0; faceValue < 13; faceValue++) {
-        let suitName: string
-        switch (suit) {
-          case 0:
-            suitName = "clubs"
-            break
-          case 1:
-            suitName = "diamonds"
-            break
-          case 2:
-            suitName = "hearts"
-            break
-          case 3:
-            suitName = "spades"
-            break
-          default:
-            throw new Error("Something went wrong " + suit + " is not a valid suitName!")
-        }
-        const newCard = new PlayingCard(new Suit(suitName), faceValue)
-        newDeck.push(newCard)
+        newDeck.push(new PlayingCard(new Suit(suitName), faceValue))
       }
-    }
+    })
     for (const card of newDeck){
       let faceValueName: string
 
