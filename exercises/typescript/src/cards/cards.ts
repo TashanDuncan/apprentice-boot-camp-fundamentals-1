@@ -8,6 +8,28 @@ export class Suit{
   }
 }
 
+export class PlayingCardDeck{
+  private cards: PlayingCard[] = []
+  constructor(){
+    suitNames.forEach(suitName => {
+      for (let faceValue = 0; faceValue < 13; faceValue++) {
+        this.cards.push(new PlayingCard(new Suit(suitName), faceValue))
+      }
+    })
+  }
+  hasCards(): boolean {
+    if(this.cards.length > 0) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  getcard() {
+    return this.cards.shift()
+  }
+}
+
 const suitNames = [
   'clubs',
   'diamonds',
@@ -27,17 +49,12 @@ export class Cards {
 
   getCards(): string[] {
     const result: string[] = []
-    const newDeck: PlayingCard[] = []
+    const playingCardDeck = new PlayingCardDeck()
 
-    suitNames.forEach(suitName => {
-      for (let faceValue = 0; faceValue < 13; faceValue++) {
-        newDeck.push(new PlayingCard(new Suit(suitName), faceValue))
-      }
-    })
-    for (const card of newDeck){
+    while(playingCardDeck.hasCards()) {
+      const card = playingCardDeck.getcard()
       let faceValueName: string
-
-      switch (card.faceValue) {
+      switch (card?.faceValue) {
         case 0:
           faceValueName = "ace"
           break
@@ -62,10 +79,10 @@ export class Cards {
           faceValueName = "king"
           break
         default:
-          throw new Error("Something went wrong " + card.faceValue + " is not a valid faceValue!")
+          throw new Error("Something went wrong " + card?.faceValue + " is not a valid faceValue!")
       }
+      result.push(`${faceValueName} of ${card?.suit.name}`)
 
-      result.push(`${faceValueName} of ${card.suit.name}`)
     }
 
     return result
