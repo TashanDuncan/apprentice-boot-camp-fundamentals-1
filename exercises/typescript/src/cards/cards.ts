@@ -1,14 +1,17 @@
 // to execute the runnable code in this file, use the command
 // `npn run cards` from the command line positioned at
 // the project's root directory.
-export class suit{
-
+export class Suit{
+  name: string
+  constructor(name:string){
+    this.name = name
+  }
 }
 
 export class PlayingCard {
-  suit: number
+  suit: Suit
   faceValue: number
-  constructor(suit: number, faceValue: number){
+  constructor(suit: Suit, faceValue: number){
     this.suit = suit
     this.faceValue = faceValue
   }
@@ -21,7 +24,24 @@ export class Cards {
 
     for (let suit = 0; suit < 4; suit++) {
       for (let faceValue = 0; faceValue < 13; faceValue++) {
-        const newCard = new PlayingCard(suit, faceValue)
+        let suitName: string
+        switch (suit) {
+          case 0:
+            suitName = "clubs"
+            break
+          case 1:
+            suitName = "diamonds"
+            break
+          case 2:
+            suitName = "hearts"
+            break
+          case 3:
+            suitName = "spades"
+            break
+          default:
+            throw new Error("Something went wrong " + suit + " is not a valid suitName!")
+        }
+        const newCard = new PlayingCard(new Suit(suitName), faceValue)
         newDeck.push(newCard)
       }
     }
@@ -55,25 +75,8 @@ export class Cards {
         default:
           throw new Error("Something went wrong " + card.faceValue + " is not a valid faceValue!")
       }
-      let suitName: string
-      switch (card.suit) {
-        case 0:
-          suitName = "clubs"
-          break
-        case 1:
-          suitName = "diamonds"
-          break
-        case 2:
-          suitName = "hearts"
-          break
-        case 3:
-          suitName = "spades"
-          break
-        default:
-          throw new Error("Something went wrong " + card.suit + " is not a valid suitName!")
-      }
 
-      result.push(`${faceValueName} of ${suitName}`)
+      result.push(`${faceValueName} of ${card.suit.name}`)
     }
 
     return result
