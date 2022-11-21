@@ -1,25 +1,34 @@
 // to execute the runnable code in this file, use the command
 // `npn run cards` from the command line positioned at
 // the project's root directory.
+export class suit{
 
+}
+
+export class PlayingCard {
+  suit: number
+  faceValue: number
+  constructor(suit: number, faceValue: number){
+    this.suit = suit
+    this.faceValue = faceValue
+  }
+}
 export class Cards {
 
   getCards(): string[] {
     const result: string[] = []
-    const deck: [number, number][] = []
+    const newDeck: PlayingCard[] = []
 
     for (let suit = 0; suit < 4; suit++) {
       for (let faceValue = 0; faceValue < 13; faceValue++) {
-        deck.push([suit, faceValue])
+        const newCard = new PlayingCard(suit, faceValue)
+        newDeck.push(newCard)
       }
     }
-
-    let cardNumber = 0
-
-    for (const card of deck) {
+    for (const card of newDeck){
       let faceValueName: string
 
-      switch (card[1]) {
+      switch (card.faceValue) {
         case 0:
           faceValueName = "ace"
           break
@@ -32,7 +41,7 @@ export class Cards {
         case 7:
         case 8:
         case 9:
-          faceValueName = (card[1] + 1).toString()
+          faceValueName = (card.faceValue + 1).toString()
           break
         case 10:
           faceValueName = "jack"
@@ -44,11 +53,10 @@ export class Cards {
           faceValueName = "king"
           break
         default:
-          throw new Error("Something went wrong " + card[1] + " is not a valid faceValue!")
+          throw new Error("Something went wrong " + card.faceValue + " is not a valid faceValue!")
       }
-
       let suitName: string
-      switch (card[0]) {
+      switch (card.suit) {
         case 0:
           suitName = "clubs"
           break
@@ -62,11 +70,10 @@ export class Cards {
           suitName = "spades"
           break
         default:
-          throw new Error("Something went wrong " + card[0] + " is not a valid suitName!")
+          throw new Error("Something went wrong " + card.suit + " is not a valid suitName!")
       }
 
-      result[cardNumber] = faceValueName + " of " + suitName
-      cardNumber++
+      result.push(`${faceValueName} of ${suitName}`)
     }
 
     return result
