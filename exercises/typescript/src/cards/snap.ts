@@ -1,7 +1,8 @@
 import readline from "readline"
-//import { AnimalDeck } from "./animal-deck"
+import { AnimalDeck } from "./animal-deck"
 import { Card } from "./card"
 import { Deck } from "./deck"
+import { MixedDeck } from "./mixed-deck"
 import { PlayingCardDeck } from "./playing-card-deck"
 
 // to execute the runnable code in this file, use the command
@@ -75,7 +76,8 @@ class Snap {
 }
 
 // const deck = new AnimalDeck()
-const deck = new PlayingCardDeck() // 🎯
+//const deck = new PlayingCardDeck() // 🎯
+const deck = new MixedDeck()
 const snap = new Snap(deck)
 
 snap.play()

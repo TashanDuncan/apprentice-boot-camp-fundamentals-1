@@ -28,4 +28,12 @@ export abstract class Deck {
   deal(): Card {
     return this.cards.splice(0, 1)[0]
   }
+
+  hasCards(): boolean {
+    if (this.cards.length > 0) {
+      return true
+    } else {
+      return false
+    }
+  }
 }

@@ -1,4 +1,3 @@
-import { Card } from "./card"
 import { Deck } from "./deck"
 import { PlayingCard } from "./playing-card"
 import { Suit } from "./suit"
@@ -16,13 +15,6 @@ export class PlayingCardDeck extends Deck {
         this.cards.push(new PlayingCard(new Suit(suitName), faceValue))
       }
     })
-  }
-  hasCards(): boolean {
-    if (this.cards.length > 0) {
-      return true
-    } else {
-      return false
-    }
   }
 
   getcard() {
