@@ -2,6 +2,7 @@
 // `npn run cards` from the command line positioned at
 // the project's root directory.
 
+import { PlayingCard } from "./playing-card"
 import { PlayingCardDeck } from "./playing-card-deck"
 
 export class Cards {
@@ -11,7 +12,7 @@ export class Cards {
     const playingCardDeck = new PlayingCardDeck()
 
     while(playingCardDeck.hasCards()) {
-      const card = playingCardDeck.getcard()
+      const card = playingCardDeck.getcard() as PlayingCard
       let faceValueName: string
       switch (card?.faceValue) {
         case 0:

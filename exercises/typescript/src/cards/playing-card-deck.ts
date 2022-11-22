@@ -9,7 +9,6 @@ const suitNames = [
   'spades'
 ]
 export class PlayingCardDeck extends Deck {
-  private cards: PlayingCard[] = []
   constructor() {
     super()
     suitNames.forEach((suitName) => {
@@ -39,19 +38,6 @@ export class PlayingCardDeck extends Deck {
     }
 
     return result
-  }
-
-  shuffle() {
-    for (let i = 0; i < this.cards.length; i++) {
-      const indexA = Math.floor(Math.random() * i)
-      const indexB = i
-
-      const valueA = this.cards[indexA]
-      const valueB = this.cards[indexB]
-
-      this.cards[indexA] = valueB
-      this.cards[indexB] = valueA
-    }
   }
 
   deal(): Card {
