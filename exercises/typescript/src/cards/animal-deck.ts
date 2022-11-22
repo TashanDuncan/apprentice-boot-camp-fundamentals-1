@@ -2,10 +2,11 @@ import { Animal as animals } from "./animal"
 import { AnimalCard } from "./animal-card"
 import { Card } from "./card"
 import { Deck } from "./deck"
-export class AnimalDeck implements Deck {
+export class AnimalDeck extends Deck {
   private readonly cards: AnimalCard[]
 
   constructor() {
+    super()
     this.cards = []
 
     for (const animal in animals) {

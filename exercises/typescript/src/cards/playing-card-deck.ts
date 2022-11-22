@@ -8,9 +8,10 @@ const suitNames = [
   'hearts',
   'spades'
 ]
-export class PlayingCardDeck implements Deck {
+export class PlayingCardDeck extends Deck {
   private cards: PlayingCard[] = []
   constructor() {
+    super()
     suitNames.forEach((suitName) => {
       for (let faceValue = 0; faceValue < 13; faceValue++) {
         this.cards.push(new PlayingCard(new Suit(suitName), faceValue))

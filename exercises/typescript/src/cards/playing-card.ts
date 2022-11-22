@@ -1,9 +1,10 @@
 import { Card } from "./card"
 import { Suit } from "./suit"
-export class PlayingCard implements Card{
+export class PlayingCard extends Card{
   suit: Suit
   faceValue: number
   constructor(suit: Suit, faceValue: number) {
+    super()
     this.suit = suit
     this.faceValue = faceValue
   }

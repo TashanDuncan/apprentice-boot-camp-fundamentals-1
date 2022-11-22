@@ -1,4 +1,3 @@
-export interface Card {
-    snap(otherCard: Card): boolean
-
+export abstract class Card {
+  abstract snap(otherCard: Card): boolean
 }
