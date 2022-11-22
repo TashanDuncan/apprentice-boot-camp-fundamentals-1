@@ -14,18 +14,4 @@ export class AnimalDeck extends Deck {
     }
   }
 
-  getCards(): string[] {
-    const result: string[] = []
-
-    for (let i = 0; i < this.cards.length; i++) {
-      const card: Card = this.cards[i]
-      result.push(card.toString())
-    }
-
-    return result
-  }
-
-  deal(): Card {
-    return this.cards.splice(0, 1)[0]
-  }
 }
