@@ -1,6 +1,8 @@
 import readline from "readline"
-import { AnimalDeck } from "./animal-deck"
-import { AnimalCard } from "./animal-card"
+//import { AnimalDeck } from "./animal-deck"
+import { Card } from "./card"
+import { Deck } from "./deck"
+import { PlayingCardDeck } from "./playing-card-deck"
 
 // to execute the runnable code in this file, use the command
 // 'npm run snap' from the command line positioned at the
@@ -9,9 +11,9 @@ import { AnimalCard } from "./animal-card"
 class Snap {
   private player1Score: number
   private player2Score: number
-  private deck: AnimalDeck
+  private deck: Deck
 
-  constructor(deck: AnimalDeck) {
+  constructor(deck: Deck) {
     this.player1Score = 0
     this.player2Score = 0
     this.deck = deck
@@ -20,8 +22,8 @@ class Snap {
   }
 
   async play() {
-    let currentCard: AnimalCard | null = null
-    let previousCard: AnimalCard | null = null
+    let currentCard: Card | null = null
+    let previousCard: Card | null = null
 
     while (this.deck.getCards().length > 0) {
       const rl = readline.createInterface({
@@ -33,7 +35,7 @@ class Snap {
       rl.prompt()
 
       currentCard = this.deck.deal()
-      console.log(currentCard.animal)
+      console.log(currentCard.toString())
 
       for await (const line of rl) {
         if (line.length > 0 && line.charAt(0).toLowerCase() === 'a') {
@@ -72,7 +74,8 @@ class Snap {
   }
 }
 
-const animalDeck = new AnimalDeck()
-const snap = new Snap(animalDeck)
+// const deck = new AnimalDeck()
+const deck = new PlayingCardDeck() // 🎯
+const snap = new Snap(deck)
 
 snap.play()

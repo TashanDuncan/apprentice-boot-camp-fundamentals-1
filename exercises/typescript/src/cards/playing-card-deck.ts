@@ -1,24 +1,39 @@
-import { Animal as animals } from "./animal"
-import { AnimalCard } from "./animal-card"
 import { Card } from "./card"
 import { Deck } from "./deck"
-export class AnimalDeck implements Deck {
-  private readonly cards: AnimalCard[]
-
+import { PlayingCard } from "./playing-card"
+import { Suit } from "./suit"
+const suitNames = [
+  'clubs',
+  'diamonds',
+  'hearts',
+  'spades'
+]
+export class PlayingCardDeck implements Deck {
+  private cards: PlayingCard[] = []
   constructor() {
-    this.cards = []
-
-    for (const animal in animals) {
-      this.cards.push(new AnimalCard(animal))
-      this.cards.push(new AnimalCard(animal))
+    suitNames.forEach((suitName) => {
+      for (let faceValue = 0; faceValue < 13; faceValue++) {
+        this.cards.push(new PlayingCard(new Suit(suitName), faceValue))
+      }
+    })
+  }
+  hasCards(): boolean {
+    if (this.cards.length > 0) {
+      return true
+    } else {
+      return false
     }
+  }
+
+  getcard() {
+    return this.cards.shift()
   }
 
   getCards(): string[] {
     const result: string[] = []
 
     for (let i = 0; i < this.cards.length; i++) {
-      const card: AnimalCard = this.cards[i]
+      const card: Card = this.cards[i]
       result.push(card.toString())
     }
 

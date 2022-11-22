@@ -1,50 +1,9 @@
 // to execute the runnable code in this file, use the command
 // `npn run cards` from the command line positioned at
 // the project's root directory.
-export class Suit{
-  name: string
-  constructor(name:string){
-    this.name = name
-  }
-}
 
-export class PlayingCardDeck{
-  private cards: PlayingCard[] = []
-  constructor(){
-    suitNames.forEach(suitName => {
-      for (let faceValue = 0; faceValue < 13; faceValue++) {
-        this.cards.push(new PlayingCard(new Suit(suitName), faceValue))
-      }
-    })
-  }
-  hasCards(): boolean {
-    if(this.cards.length > 0) {
-      return true
-    } else {
-      return false
-    }
-  }
+import { PlayingCardDeck } from "./playing-card-deck"
 
-  getcard() {
-    return this.cards.shift()
-  }
-}
-
-const suitNames = [
-  'clubs',
-  'diamonds',
-  'hearts',
-  'spades'
-]
-
-export class PlayingCard {
-  suit: Suit
-  faceValue: number
-  constructor(suit: Suit, faceValue: number){
-    this.suit = suit
-    this.faceValue = faceValue
-  }
-}
 export class Cards {
 
   getCards(): string[] {
